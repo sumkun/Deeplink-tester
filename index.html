@@ -6,83 +6,88 @@
   <title>Deep Link Tester</title>
   <style>
     :root {
-      --bg: #0b1020;
-      --card: #141a2e;
-      --text: #e8eaf2;
-      --muted: #9aa3b2;
-      --accent: #5eead4;
-      --accent-2: #8b5cf6;
-      --ring: rgba(94, 234, 212, 0.5);
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #6366f1;
+      --ring: rgba(56, 189, 248, 0.5);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; }
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1000px 700px at 10% -10%, rgba(139,92,246,.18), transparent 60%),
-                  radial-gradient(700px 500px at 90% 110%, rgba(94,234,212,.15), transparent 60%),
+      background: radial-gradient(1200px 900px at 10% -10%, rgba(99,102,241,.15), transparent 70%),
+                  radial-gradient(900px 700px at 90% 110%, rgba(56,189,248,.12), transparent 70%),
                   var(--bg);
       color: var(--text);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 16px;
+      flex-direction: column;
     }
     .card {
       width: 100%;
       max-width: 480px;
       background: var(--card);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
-    h1 { font-size: 1.4rem; margin: 0 0 10px; text-align: center; }
-    p.desc { margin: 0 0 14px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+    h1 { font-size: 1.5rem; margin: 0 0 12px; text-align: center; color: var(--accent); }
+    p.desc { margin: 0 0 16px; color: var(--muted); font-size: 0.95rem; text-align: center; }
 
-    .row { display: flex; flex-direction: column; gap: 8px; }
-    label { font-size: 0.8rem; color: var(--muted); }
+    .row { display: flex; flex-direction: column; gap: 10px; }
+    label { font-size: 0.85rem; color: var(--muted); }
 
     .input-wrap {
-      display: flex; flex-direction: column; gap: 8px; width: 100%;
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px; padding: 6px; transition: box-shadow .2s, border-color .2s;
+      display: flex; flex-direction: column; gap: 10px; width: 100%;
+      background: #0f172a;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 8px; transition: box-shadow .2s, border-color .2s;
     }
-    .input-wrap:focus-within { box-shadow: 0 0 0 3px var(--ring); border-color: rgba(255,255,255,0.16); }
+    .input-wrap:focus-within { box-shadow: 0 0 0 3px var(--ring); border-color: rgba(255,255,255,0.2); }
 
     input[type="text"] {
       border: none; outline: none; background: transparent; color: var(--text);
-      font-size: 1rem; padding: 8px 6px; width: 100%;
+      font-size: 1rem; padding: 10px 8px; width: 100%;
     }
     .btn {
       border: none; outline: none; cursor: pointer; user-select: none;
-      padding: 10px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+      padding: 12px; border-radius: 12px; font-weight: 600; font-size: 0.95rem;
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0a0a0a; box-shadow: 0 4px 12px rgba(139,92,246,.25);
+      color: #fff; box-shadow: 0 4px 14px rgba(56,189,248,.3);
       transition: transform .06s ease; width: 100%;
     }
     .btn:active { transform: scale(0.97); }
-    .btn.secondary { background: #222942; color: var(--text); box-shadow: none; border: 1px solid rgba(255,255,255,0.08); }
+    .btn.secondary { background: #1e293b; color: var(--text); box-shadow: none; border: 1px solid rgba(255,255,255,0.12); }
 
     .options {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 8px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 10px;
       color: var(--muted); font-size: 0.85rem;
     }
     .output {
-      margin-top: 16px; padding: 12px; border-radius: 12px; background: var(--card);
+      margin-top: 18px; padding: 14px; border-radius: 14px; background: #0f172a;
       border: 1px dashed rgba(255,255,255,0.15);
       word-break: break-all;
     }
     .line { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; }
-    .line code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: rgba(255,255,255,0.04); padding: 6px 8px; border-radius: 8px; }
-    .pill { font-size: 0.7rem; color: #0a0a0a; background: var(--accent); padding: 4px 6px; border-radius: 999px; font-weight: 700; align-self: flex-start; }
+    .line code { font-family: ui-monospace, monospace; font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 6px 8px; border-radius: 8px; }
+    .pill { font-size: 0.7rem; color: #fff; background: var(--accent-2); padding: 4px 8px; border-radius: 999px; font-weight: 600; align-self: flex-start; }
 
     .clickable a {
       display: inline-block; text-decoration: none; font-weight: 700; color: var(--accent);
-      background: rgba(94,234,212,0.08); padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(94,234,212,0.3);
+      background: rgba(56,189,248,0.08); padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(56,189,248,0.3);
     }
     .hint { margin-top: 8px; color: var(--muted); font-size: 0.75rem; text-align: center; }
+
+    footer {
+      margin-top: 16px; font-size: 0.75rem; color: var(--muted); text-align: center;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
 
     @media (min-width: 480px) {
       .btn { width: auto; align-self: flex-end; }
@@ -115,6 +120,10 @@
       <p class="hint">Tip: Open this page on your phone for real deep link behavior.</p>
     </section>
   </main>
+
+  <footer>
+    © 2025 <a href="https://www.linkedin.com/in/sumitdube" target="_blank" rel="noopener">Sumit Dube</a>
+  </footer>
 
   <script>
     const $ = (sel) => document.querySelector(sel);
